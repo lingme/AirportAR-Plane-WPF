@@ -1,0 +1,20 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:data="clr-namespace:Domain.Models;assembly=Domain"
+    xmlns:local="clr-namespace:AirportFlyControl">
+    
+    <Style TargetType="{x:Type local:AirportFlyLayer}">
+        <Style.Resources>
+
+            <DataTemplate x:Key="dataTemp" DataType="{x:Type data:AircraftAR}">
+                <DataGrid>
+                    <ToolTip Visibility="Visible" Content="fdfd"></ToolTip>
+                </DataGrid>
+            </DataTemplate>
+            
+        </Style.Resources>
+
+        <Setter Property="ItemTemplate" Value="{StaticResource dataTemp}"></Setter>
+    </Style>
+</ResourceDictionary>
