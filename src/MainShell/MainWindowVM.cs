@@ -23,7 +23,16 @@ namespace MainShell
                 FlightNumber="MU6543",
                 AirWay = Domain.AirWays.A,
                 FlightX = 0.05,
-                FlightY = 0.25,
+                FlightY = 0.15,
+                FlightAngle = 0
+            });
+
+            AircraftList.Add(new AircraftAR
+            {
+                FlightNumber = "MU6543",
+                AirWay = Domain.AirWays.A,
+                FlightX = 0.05,
+                FlightY = 0.35,
                 FlightAngle = 0
             });
 
@@ -33,20 +42,20 @@ namespace MainShell
                 FlightNumber = "MU6543",
                 AirWay = Domain.AirWays.D,
                 FlightX = 0.05,
-                FlightY = 0.6,
+                FlightY = 0.55,
                 FlightAngle = 0
             });
 
 
-            Observable.Interval(TimeSpan.FromSeconds(0.05)).Subscribe(RunInfo);
+            Observable.Interval(TimeSpan.FromSeconds(0.2)).Subscribe(RunInfo);
         }
 
         async void RunInfo(long p)
         {
             foreach (var item in AircraftList)
             {
-                item.FlightX += 0.001;
-                item.FlightAngle = (item.FlightAngle += 0.3) % 360;
+                item.FlightX += 0.01;
+                item.FlightAngle = (item.FlightAngle += 0.5) % 360;
             }
         }
     }
