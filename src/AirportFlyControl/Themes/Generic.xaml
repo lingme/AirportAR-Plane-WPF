@@ -3,18 +3,50 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:data="clr-namespace:Domain.Models;assembly=Domain"
     xmlns:local="clr-namespace:AirportFlyControl">
-    
+
     <Style TargetType="{x:Type local:AirportFlyLayer}">
         <Style.Resources>
-
             <DataTemplate x:Key="dataTemp" DataType="{x:Type data:AircraftAR}">
                 <DataGrid>
-                    <ToolTip Visibility="Visible" Content="fdfd"></ToolTip>
+                  
                 </DataGrid>
             </DataTemplate>
-            
+
+            <Style x:Key="listBoxStyle"   TargetType="{x:Type ListBox}">
+                <Setter Property="ItemsPanel">
+                    <Setter.Value>
+                        <ItemsPanelTemplate>
+                            <Canvas />
+                        </ItemsPanelTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate>
+                            <ItemsPresenter />
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style x:Key="itemStyle" TargetType="{x:Type ListBoxItem}">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                            <ContentPresenter ContentSource="Content" />
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
         </Style.Resources>
 
-        <Setter Property="ItemTemplate" Value="{StaticResource dataTemp}"></Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:AirportFlyLayer}">
+                    <ListBox ItemTemplate="{StaticResource dataTemp}" Style="{StaticResource listBoxStyle}" ItemContainerStyle="{StaticResource itemStyle}"
+                             ItemsSource="{Binding AirSources,RelativeSource={RelativeSource TemplatedParent}}"></ListBox>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
 </ResourceDictionary>

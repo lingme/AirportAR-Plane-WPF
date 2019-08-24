@@ -18,10 +18,10 @@ namespace Domain.Models
 
         public double FlightAngle { get; set; }
 
-        public bool IsShowFlightNumber { get; set; }
+        public bool IsShowFlightNumber { get; set; } = true;
 
-        public bool IsShowAirWay { get; set; }
+        public bool IsShowAirWay { get; set; } = true;
 
-        public Wpf::Brush Fill { get; set; }
+        public Wpf::Brush ArFill { get; set; }
     }
 }

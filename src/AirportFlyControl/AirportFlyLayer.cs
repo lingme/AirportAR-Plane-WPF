@@ -12,14 +12,35 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Collections.ObjectModel;
+using Domain.Models;
 
 namespace AirportFlyControl
 {
-    public class AirportFlyLayer : ListBox
+    public class AirportFlyLayer : Control
     {
+        public ObservableCollection<AircraftAR> AirSources
+        {
+            get { return (ObservableCollection<AircraftAR>)GetValue(AirSourcesProperty); }
+            set { SetValue(AirSourcesProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty AirSourcesProperty = DependencyProperty.Register(
+            nameof(AirSources), 
+            typeof(ObservableCollection<AircraftAR>), 
+            typeof(AirportFlyLayer), 
+            new PropertyMetadata(new ObservableCollection<AircraftAR>()));
+
         static AirportFlyLayer()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(AirportFlyLayer), new FrameworkPropertyMetadata(typeof(AirportFlyLayer)));
         }
+
+        public override void OnApplyTemplate()
+        {
+            base.OnApplyTemplate();
+        }
+
     }
 }
