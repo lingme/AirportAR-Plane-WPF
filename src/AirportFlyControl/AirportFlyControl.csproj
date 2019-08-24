@@ -58,6 +58,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Converters\AirWayColorConverter.cs" />
+    <Compile Include="Converters\ProjectionConverter.cs" />
+    <Compile Include="Converters\RotateAntiConverter.cs" />
+    <Compile Include="Converters\TitlePointConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

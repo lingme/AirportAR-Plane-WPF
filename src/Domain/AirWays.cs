@@ -13,6 +13,6 @@ namespace Domain
         A,
 
         [Description("Flight Way is Deviate")]
-        B
+        D
     }
 }

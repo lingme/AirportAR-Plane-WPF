@@ -7,33 +7,47 @@ using PropertyChanged;
 using System.Collections.ObjectModel;
 using Domain.Models;
 using System.Windows.Media;
+using System.Reactive.Linq;
+using Domain.AsyncCollection;
 
 namespace MainShell
 {
     [AddINotifyPropertyChangedInterface]
     public class MainWindowVM
     {
-        public ObservableCollection<AircraftAR> AircraftList { get; set; } = new ObservableCollection<AircraftAR>();
+        public AsyncObservableCollection<AircraftAR> AircraftList { get; set; } = new AsyncObservableCollection<AircraftAR>();
 
         public MainWindowVM()
         {
             AircraftList.Add(new AircraftAR {
                 FlightNumber="MU6543",
                 AirWay = Domain.AirWays.A,
-                FlightX = 0.5,
-                FlightY = 0.5,
-                FlightAngle = 90
+                FlightX = 0.05,
+                FlightY = 0.25,
+                FlightAngle = 0
             });
 
 
             AircraftList.Add(new AircraftAR
             {
                 FlightNumber = "MU6543",
-                AirWay = Domain.AirWays.A,
-                FlightX = 0.5,
-                FlightY = 0.5,
-                FlightAngle = 90
+                AirWay = Domain.AirWays.D,
+                FlightX = 0.05,
+                FlightY = 0.6,
+                FlightAngle = 0
             });
+
+
+            Observable.Interval(TimeSpan.FromSeconds(0.05)).Subscribe(RunInfo);
+        }
+
+        async void RunInfo(long p)
+        {
+            foreach (var item in AircraftList)
+            {
+                item.FlightX += 0.001;
+                item.FlightAngle = (item.FlightAngle += 0.3) % 360;
+            }
         }
     }
 }

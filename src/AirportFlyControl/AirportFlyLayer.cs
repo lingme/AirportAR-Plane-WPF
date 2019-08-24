@@ -14,22 +14,23 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Collections.ObjectModel;
 using Domain.Models;
+using Domain.AsyncCollection;
 
 namespace AirportFlyControl
 {
     public class AirportFlyLayer : Control
     {
-        public ObservableCollection<AircraftAR> AirSources
+        public AsyncObservableCollection<AircraftAR> AirSources
         {
-            get { return (ObservableCollection<AircraftAR>)GetValue(AirSourcesProperty); }
+            get { return (AsyncObservableCollection<AircraftAR>)GetValue(AirSourcesProperty); }
             set { SetValue(AirSourcesProperty, value); }
         }
 
         public static readonly DependencyProperty AirSourcesProperty = DependencyProperty.Register(
             nameof(AirSources), 
-            typeof(ObservableCollection<AircraftAR>), 
+            typeof(AsyncObservableCollection<AircraftAR>), 
             typeof(AirportFlyLayer), 
-            new PropertyMetadata(new ObservableCollection<AircraftAR>()));
+            new PropertyMetadata(new AsyncObservableCollection<AircraftAR>()));
 
         static AirportFlyLayer()
         {
