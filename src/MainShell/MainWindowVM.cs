@@ -20,42 +20,20 @@ namespace MainShell
         public MainWindowVM()
         {
             AircraftList.Add(new AircraftAR {
-                FlightNumber="MU6543",
-                AirWay = Domain.AirWays.A,
-                FlightX = 0.05,
-                FlightY = 0.15,
-                FlightAngle = 0
-            });
-
-            AircraftList.Add(new AircraftAR
-            {
                 FlightNumber = "MU6543",
                 AirWay = Domain.AirWays.A,
-                FlightX = 0.05,
-                FlightY = 0.35,
+                Vertex = new VertexCoord(0, 100),
                 FlightAngle = 0
-            });
+            }) ;
 
-
-            AircraftList.Add(new AircraftAR
-            {
-                FlightNumber = "MU6543",
-                AirWay = Domain.AirWays.D,
-                FlightX = 0.05,
-                FlightY = 0.55,
-                FlightAngle = 0
-            });
-
-
-            Observable.Interval(TimeSpan.FromSeconds(0.2)).Subscribe(RunInfo);
+            Observable.Interval(TimeSpan.FromSeconds(2)).Subscribe(RunInfo);
         }
 
         async void RunInfo(long p)
         {
             foreach (var item in AircraftList)
             {
-                item.FlightX += 0.01;
-                item.FlightAngle = (item.FlightAngle += 0.5) % 360;
+                item.Vertex = new VertexCoord(item.Vertex.X+500, item.Vertex.Y+0.2);
             }
         }
     }

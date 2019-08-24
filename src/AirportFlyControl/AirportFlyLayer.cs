@@ -1,20 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Domain.AsyncCollection;
+using Domain.Models;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Collections.ObjectModel;
-using Domain.Models;
-using Domain.AsyncCollection;
 
 namespace AirportFlyControl
 {
@@ -31,6 +18,30 @@ namespace AirportFlyControl
             typeof(AsyncObservableCollection<AircraftAR>), 
             typeof(AirportFlyLayer), 
             new PropertyMetadata(new AsyncObservableCollection<AircraftAR>()));
+
+        //public VertexCoord StoryX
+        //{
+        //    get { return (VertexCoord)GetValue(StoryXProperty); }
+        //    set { SetValue(StoryXProperty, value); }
+        //}
+
+        //public static readonly DependencyProperty StoryXProperty = DependencyProperty.Register(
+        //    "StoryX", 
+        //    typeof(VertexCoord), 
+        //    typeof(AirportFlyLayer), 
+        //    new PropertyMetadata(new VertexCoord()));
+
+        //public VertexCoord StoryY
+        //{
+        //    get { return (VertexCoord)GetValue(StoryYProperty); }
+        //    set { SetValue(StoryYProperty, value); }
+        //}
+
+        //public static readonly DependencyProperty StoryYProperty = DependencyProperty.Register(
+        //    "StoryY", 
+        //    typeof(VertexCoord), 
+        //    typeof(AirportFlyLayer), 
+        //    new PropertyMetadata(new VertexCoord()));
 
         static AirportFlyLayer()
         {

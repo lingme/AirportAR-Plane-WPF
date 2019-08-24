@@ -54,6 +54,7 @@
     <Compile Include="AirWays.cs" />
     <Compile Include="AsyncCollection\AsyncObservableCollection.cs" />
     <Compile Include="Models\AircraftAR.cs" />
+    <Compile Include="Models\VertexCoord.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
