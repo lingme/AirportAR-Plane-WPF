@@ -1,7 +1,4 @@
 ﻿using PropertyChanged;
-using System.Windows;
-using System.Windows.Shapes;
-using Wpf=System.Windows.Media;
 
 namespace Domain.Models
 {
@@ -21,7 +18,5 @@ namespace Domain.Models
         public bool IsShowFlightNumber { get; set; } = true;
 
         public bool IsShowAirWay { get; set; } = true;
-
-        public Wpf::Brush ArFill { get; set; }
     }
 }

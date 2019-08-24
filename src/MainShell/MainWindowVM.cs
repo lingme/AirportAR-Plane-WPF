@@ -22,8 +22,7 @@ namespace MainShell
                 AirWay = Domain.AirWays.A,
                 FlightX = 0.5,
                 FlightY = 0.5,
-                FlightAngle = 90,
-                ArFill = Brushes.Green
+                FlightAngle = 90
             });
 
 
@@ -33,8 +32,7 @@ namespace MainShell
                 AirWay = Domain.AirWays.A,
                 FlightX = 0.5,
                 FlightY = 0.5,
-                FlightAngle = 90,
-                ArFill = Brushes.Green
+                FlightAngle = 90
             });
         }
     }

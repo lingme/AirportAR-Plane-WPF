@@ -6,7 +6,7 @@
         xmlns:af="clr-namespace:AirportFlyControl;assembly=AirportFlyControl"
         xmlns:local="clr-namespace:MainShell"
         mc:Ignorable="d"
-        Background="#494e6c"
+        Background="#313649"
         Title="MainWindow" Height="769" Width="1280">
     <Window.DataContext>
         <local:MainWindowVM></local:MainWindowVM>
