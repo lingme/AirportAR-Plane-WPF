@@ -6,10 +6,11 @@
 
     <Style TargetType="{x:Type local:AirportFlyLayer}">
         <Style.Resources>
+            
             <DataTemplate x:Key="dataTemp" DataType="{x:Type data:AircraftAR}">
-                <DataGrid>
-                  
-                </DataGrid>
+                <Grid>
+                    <TextBlock Text="fdfdfd"></TextBlock>
+                </Grid>
             </DataTemplate>
 
             <Style x:Key="listBoxStyle"   TargetType="{x:Type ListBox}">
@@ -30,20 +31,28 @@
             </Style>
 
             <Style x:Key="itemStyle" TargetType="{x:Type ListBoxItem}">
+                <Setter Property="Canvas.Left" Value="{Binding FlightX}" />
+                <Setter Property="Canvas.Top" Value="{Binding FlightY}" />
+                <Setter Property="Background" Value="Transparent"></Setter>
+                <Setter Property="BorderBrush" Value="Red"></Setter>
+                <Setter Property="BorderThickness" Value="1"></Setter>
+                <Setter Property="Height" Value="200" />
+                <Setter Property="Width" Value="200" />
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type ListBoxItem}">
-                            <ContentPresenter ContentSource="Content" />
+                            <ContentPresenter ContentSource="Content"/>
                         </ControlTemplate>
                     </Setter.Value>
                 </Setter>
             </Style>
+            
         </Style.Resources>
 
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:AirportFlyLayer}">
-                    <ListBox ItemTemplate="{StaticResource dataTemp}" Style="{StaticResource listBoxStyle}" ItemContainerStyle="{StaticResource itemStyle}"
+                    <ListBox Style="{StaticResource listBoxStyle}" ItemContainerStyle="{StaticResource itemStyle}"  ItemTemplate="{StaticResource dataTemp}" 
                              ItemsSource="{Binding AirSources,RelativeSource={RelativeSource TemplatedParent}}"></ListBox>
                 </ControlTemplate>
             </Setter.Value>

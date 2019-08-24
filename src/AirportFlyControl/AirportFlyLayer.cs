@@ -25,7 +25,6 @@ namespace AirportFlyControl
             set { SetValue(AirSourcesProperty, value); }
         }
 
-        // Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty AirSourcesProperty = DependencyProperty.Register(
             nameof(AirSources), 
             typeof(ObservableCollection<AircraftAR>), 
