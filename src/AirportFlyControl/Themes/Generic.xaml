@@ -1,96 +1,139 @@
 ﻿<ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:cov="clr-namespace:AirportFlyControl.Converters"
     xmlns:data="clr-namespace:Domain.Models;assembly=Domain"
-    xmlns:cov ="clr-namespace:AirportFlyControl.Converters"
-    xmlns:sys="clr-namespace:System;assembly=mscorlib"
-    xmlns:proxy="clr-namespace:AirportFlyControl.Dependencys"
-    xmlns:local="clr-namespace:AirportFlyControl">
+    xmlns:local="clr-namespace:AirportFlyControl"
+    xmlns:pxy="clr-namespace:AirportFlyControl.Dependencys"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib">
 
     <Style TargetType="{x:Type local:AirportFlyLayer}">
         <Style.Resources>
-            
-            <Geometry x:Key="FLY_ICON">
+
+            <Geometry x:Key="_PART_FLY">
                 M599.06048 831.309824l12.106752-193.404928 372.860928 184.430592L984.02816 710.206464 617.906176 367.33952 617.906176 151.638016c0-56.974336-46.188544-143.064064-103.158784-143.064064-56.974336 0-103.158784 86.089728-103.158784 143.064064L411.588608 367.33952 45.461504 710.206464l0 112.129024 366.660608-184.430592 14.999552 209.27488c0 5.05344 0.594944 9.892864 1.124352 14.749696l-66.591744 60.348416 0 66.587648 153.986048-50.879488 2.43712-0.80896 147.439616 51.688448 0-66.587648-68.758528-62.253056L599.06048 831.309824z
             </Geometry>
 
-            <Geometry x:Key="CHAT_ICON">
+            <Geometry x:Key="_PART_CHAT">
                 M90,25.906c0,14.31-11.928,25.906-26.641,25.906H36.723v-27.25h0.032C37.476,10.879,49.111,0,63.359,0C78.072,0,90,11.6,90,25.906z
             </Geometry>
 
-            <cov:AirWayColorConverter x:Key="AirColorCov"></cov:AirWayColorConverter>
-            <cov:ProjectionConverter x:Key="projectionCov"></cov:ProjectionConverter>
-            <cov:RotateAntiConverter x:Key="rotateAntiCov"></cov:RotateAntiConverter>
-            <cov:TitlePointConverter x:Key="titlePointCov"></cov:TitlePointConverter>
-            <BooleanToVisibilityConverter x:Key="boolToVisibilityCov"></BooleanToVisibilityConverter>
-            
+            <cov:AirWayColorConverter x:Key="AirColorCov" />
+            <cov:RotateAntiConverter x:Key="rotateAntiCov" />
+            <cov:ProjectionConverter x:Key="projectionCov"/>
+            <cov:TitlePointConverter x:Key="titlePointCov" />
+            <BooleanToVisibilityConverter x:Key="boolToVisibilityCov" />
+
             <DataTemplate x:Key="dataTemp" DataType="{x:Type data:AircraftAR}">
                 <Grid>
-                    <Grid ShowGridLines="False" RenderTransformOrigin="0.5,0.5">
+                    <Grid RenderTransformOrigin="0.5,0.5" ShowGridLines="False">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="40"></RowDefinition>
-                            <RowDefinition Height="40"></RowDefinition>
-                            <RowDefinition Height="40"></RowDefinition>
+                            <RowDefinition Height="40" />
+                            <RowDefinition Height="40" />
+                            <RowDefinition Height="40" />
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="40"></ColumnDefinition>
-                            <ColumnDefinition Width="40"></ColumnDefinition>
-                            <ColumnDefinition Width="40"></ColumnDefinition>
+                            <ColumnDefinition Width="40" />
+                            <ColumnDefinition Width="40" />
+                            <ColumnDefinition Width="40" />
                         </Grid.ColumnDefinitions>
-                        
-                        <Viewbox Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Width="35" Height="35">
-                            <Path Data="{StaticResource FLY_ICON}" Fill="{Binding AirWay,Converter={StaticResource AirColorCov}}"></Path>
+
+                        <Viewbox
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Width="35"
+                            Height="35"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center">
+                            <Path Data="{StaticResource _PART_FLY}" Fill="{Binding AirWay, Converter={StaticResource AirColorCov}}" />
                         </Viewbox>
 
-                        <Viewbox Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Width="30" Height="30" Visibility="{Binding IsShowAirWay,Converter={StaticResource boolToVisibilityCov}}">
+                        <Viewbox
+                            Grid.Row="2"
+                            Grid.Column="1"
+                            Width="30"
+                            Height="30"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Visibility="{Binding IsShowAirWay, Converter={StaticResource boolToVisibilityCov}}">
                             <Grid>
-                                <Path Fill="#252429" Data="{StaticResource CHAT_ICON}" Stroke="{Binding AirWay,Converter={StaticResource AirColorCov}}" StrokeThickness="3"  Stretch="Fill" RenderTransformOrigin="0.5,0.5">
+                                <Path
+                                    Data="{StaticResource _PART_CHAT}"
+                                    Fill="#252429"
+                                    RenderTransformOrigin="0.5,0.5"
+                                    Stretch="Fill"
+                                    Stroke="{Binding AirWay, Converter={StaticResource AirColorCov}}"
+                                    StrokeThickness="3">
                                     <Path.RenderTransform>
                                         <TransformGroup>
-                                            <RotateTransform Angle="135"/>
+                                            <RotateTransform Angle="135" />
                                         </TransformGroup>
                                     </Path.RenderTransform>
                                 </Path>
                             </Grid>
                         </Viewbox>
 
-                        <TextBlock Grid.Row="2" Grid.Column="1"  Text="{Binding AirWay}" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="{Binding IsShowAirWay,Converter={StaticResource boolToVisibilityCov}}"
-                                   Foreground="White" FontSize="20" FontWeight="DemiBold" RenderTransformOrigin="0.5,0.5" >
+                        <TextBlock
+                            Grid.Row="2"
+                            Grid.Column="1"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            FontSize="20"
+                            FontWeight="DemiBold"
+                            Foreground="White"
+                            RenderTransformOrigin="0.5,0.5"
+                            Text="{Binding AirWay}"
+                            Visibility="{Binding IsShowAirWay, Converter={StaticResource boolToVisibilityCov}}">
                             <TextBlock.RenderTransform>
                                 <TransformGroup>
-                                    <RotateTransform Angle="{Binding FlightAngle,Converter={StaticResource rotateAntiCov}}"></RotateTransform>
+                                    <RotateTransform Angle="{Binding FlightAngle, Converter={StaticResource rotateAntiCov}}" />
                                 </TransformGroup>
                             </TextBlock.RenderTransform>
                         </TextBlock>
 
                         <Grid.RenderTransform>
                             <TransformGroup>
-                                <RotateTransform Angle="{Binding FlightAngle}"></RotateTransform>
+                                <RotateTransform Angle="{Binding FlightAngle}" />
                             </TransformGroup>
                         </Grid.RenderTransform>
                     </Grid>
 
-                    <Grid ShowGridLines="False" RenderTransformOrigin="0.5,0.5">
+                    <Grid RenderTransformOrigin="0.5,0.5" ShowGridLines="False">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="40"></RowDefinition>
-                            <RowDefinition Height="40"></RowDefinition>
-                            <RowDefinition Height="40"></RowDefinition>
+                            <RowDefinition Height="40" />
+                            <RowDefinition Height="40" />
+                            <RowDefinition Height="40" />
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="40"></ColumnDefinition>
-                            <ColumnDefinition Width="40"></ColumnDefinition>
-                            <ColumnDefinition Width="40"></ColumnDefinition>
+                            <ColumnDefinition Width="40" />
+                            <ColumnDefinition Width="40" />
+                            <ColumnDefinition Width="40" />
                         </Grid.ColumnDefinitions>
 
-                        <TextBox Foreground="Black" FontSize="18" FontWeight="Bold"  Height="25" Width="100" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" 
-                                 Grid.Row="{Binding FlightAngle,Converter={StaticResource titlePointCov}}" Grid.ColumnSpan="3" IsReadOnly="True" Visibility="{Binding IsShowFlightNumber,Converter={StaticResource boolToVisibilityCov}}"
-                                 Background="{Binding AirWay,Converter={StaticResource AirColorCov}}" BorderThickness="0" Text="{Binding FlightNumber}">
+                        <TextBox
+                            Grid.Row="{Binding FlightAngle, Converter={StaticResource titlePointCov}}"
+                            Grid.ColumnSpan="3"
+                            Width="100"
+                            Height="25"
+                            HorizontalContentAlignment="Center"
+                            VerticalContentAlignment="Center"
+                            Background="{Binding AirWay, Converter={StaticResource AirColorCov}}"
+                            BorderThickness="0"
+                            FontSize="18"
+                            FontWeight="Bold"
+                            Foreground="Black"
+                            IsReadOnly="True"
+                            Text="{Binding FlightNumber}"
+                            Visibility="{Binding IsShowFlightNumber, Converter={StaticResource boolToVisibilityCov}}">
                             <TextBox.Effect>
-                                <DropShadowEffect ShadowDepth="0" BlurRadius="1" Color="#FF000000" />
+                                <DropShadowEffect
+                                    BlurRadius="1"
+                                    ShadowDepth="0"
+                                    Color="#FF000000" />
                             </TextBox.Effect>
                             <TextBox.Resources>
                                 <Style TargetType="{x:Type Border}">
-                                    <Setter Property="CornerRadius" Value="5"></Setter>
+                                    <Setter Property="CornerRadius" Value="5" />
                                 </Style>
                             </TextBox.Resources>
                         </TextBox>
@@ -98,8 +141,8 @@
                 </Grid>
             </DataTemplate>
 
-            <Style x:Key="listBoxStyle"   TargetType="{x:Type ListBox}">
-                <Setter Property="BorderThickness" Value="0"></Setter>
+            <Style x:Key="listBoxStyle" TargetType="{x:Type ListBox}">
+                <Setter Property="BorderThickness" Value="0" />
                 <Setter Property="ItemsPanel">
                     <Setter.Value>
                         <ItemsPanelTemplate>
@@ -117,92 +160,47 @@
             </Style>
 
             <Style x:Key="itemStyle" TargetType="{x:Type ListBoxItem}">
-                <!--<Setter Property="Canvas.Left">
+                <Setter Property="Canvas.Left">
                     <Setter.Value>
                         <MultiBinding Converter="{StaticResource projectionCov}">
-                            <Binding Path="FlightX"></Binding>
+                            <Binding Path="Vertex.X"></Binding>
                             <Binding Path="ActualWidth" RelativeSource="{RelativeSource AncestorType={x:Type ListBox}}"></Binding>
                             <Binding Path="ActualWidth" RelativeSource="{RelativeSource Mode=Self}"></Binding>
                         </MultiBinding>
                     </Setter.Value>
                 </Setter>
-
                 <Setter Property="Canvas.Top">
                     <Setter.Value>
                         <MultiBinding Converter="{StaticResource projectionCov}">
-                            <Binding Path="FlightY"></Binding>
+                            <Binding Path="Vertex.Y"></Binding>
                             <Binding Path="ActualHeight" RelativeSource="{RelativeSource AncestorType={x:Type ListBox}}"></Binding>
                             <Binding Path="ActualHeight" RelativeSource="{RelativeSource Mode=Self}"></Binding>
                         </MultiBinding>
                     </Setter.Value>
-                </Setter>-->
-
-                <!--<Style.Resources>
-                    <proxy:ProxyObject x:Key="proxyFrame">
-                        <proxy:ProxyObject.ProxyFromFrame>
-                            <MultiBinding Converter="{StaticResource projectionCov}">
-                                <Binding Path="FromFame"></Binding>
-                                <Binding Path="ActualWidth" RelativeSource="{RelativeSource AncestorType={x:Type ListBox}}"></Binding>
-                                <Binding Path="ActualWidth" RelativeSource="{RelativeSource Mode=Self}"></Binding>
-                            </MultiBinding>
-                        </proxy:ProxyObject.ProxyFromFrame>
-                    </proxy:ProxyObject>
-                </Style.Resources>-->
-                
-                <Setter Property="Background" Value="Transparent"></Setter>
-                
+                </Setter>
+                <Setter Property="pxy:StoryboardHelper.CustomAnimation" Value="{Binding BeginFlyAnimation}"></Setter>
+                <Setter Property="Background" Value="Transparent" />
                 <Setter Property="Height" Value="120" />
                 <Setter Property="Width" Value="120" />
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type ListBoxItem}">
-                            <ContentPresenter ContentSource="Content"/>
+                            <ContentPresenter ContentSource="Content" />
                         </ControlTemplate>
                     </Setter.Value>
                 </Setter>
-
-                <Style.Triggers>
-                    <DataTrigger Binding="{Binding IsShowAirWay}" Value="True">
-                        <DataTrigger.EnterActions>
-                            <BeginStoryboard>
-                                <Storyboard>
-                                    <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Canvas.Left)" Duration="0:0:2">
-                                        <!--<LinearDoubleKeyFrame KeyTime="0:0:0" Value="{Binding FromFrame.X}">
-                                            --><!--<LinearDoubleKeyFrame.Value>
-                                                <MultiBinding Converter="{StaticResource projectionCov}">
-                                                    <Binding Path="FromFrame.X"></Binding>
-                                                    <Binding Path="ActualWidth" RelativeSource="{RelativeSource AncestorType={x:Type ListBox}}"></Binding>
-                                                    <Binding Path="ActualWidth" RelativeSource="{RelativeSource Mode=Self}"></Binding>
-                                                </MultiBinding>
-                                            </LinearDoubleKeyFrame.Value>--><!--
-                                        </LinearDoubleKeyFrame>
-                                        <LinearDoubleKeyFrame KeyTime="0:0:2" Value="{Binding ToFrame.X}">
-                                            --><!--<LinearDoubleKeyFrame.Value>
-                                                <MultiBinding Converter="{StaticResource projectionCov}">
-                                                    <Binding Path="ToFrame.X"></Binding>
-                                                    <Binding Path="ActualWidth" RelativeSource="{RelativeSource AncestorType={x:Type ListBox}}"></Binding>
-                                                    <Binding Path="ActualWidth" RelativeSource="{RelativeSource Mode=Self}"></Binding>
-                                                </MultiBinding>
-                                            </LinearDoubleKeyFrame.Value>--><!--
-                                        </LinearDoubleKeyFrame>-->
-
-                                        <LinearDoubleKeyFrame Value="1"></LinearDoubleKeyFrame>
-                                        <LinearDoubleKeyFrame Value="200"></LinearDoubleKeyFrame>
-                                    </DoubleAnimationUsingKeyFrames>
-                                </Storyboard>
-                            </BeginStoryboard>
-                        </DataTrigger.EnterActions>
-                    </DataTrigger>
-                </Style.Triggers>
             </Style>
-            
+
         </Style.Resources>
 
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:AirportFlyLayer}">
-                    <ListBox Style="{StaticResource listBoxStyle}" ItemContainerStyle="{StaticResource itemStyle}"  ItemTemplate="{StaticResource dataTemp}" 
-                             ItemsSource="{Binding AirSources,RelativeSource={RelativeSource TemplatedParent}}"></ListBox>
+                    <ListBox
+                        ItemContainerStyle="{StaticResource itemStyle}"
+                        ItemTemplate="{StaticResource dataTemp}"
+                        ItemsSource="{Binding AirSources, RelativeSource={RelativeSource TemplatedParent}}"
+                        Style="{StaticResource listBoxStyle}" />
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

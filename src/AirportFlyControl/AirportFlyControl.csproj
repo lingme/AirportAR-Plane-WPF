@@ -61,7 +61,7 @@
     <Compile Include="Converters\ProjectionConverter.cs" />
     <Compile Include="Converters\RotateAntiConverter.cs" />
     <Compile Include="Converters\TitlePointConverter.cs" />
-    <Compile Include="Dependencys\ProxyObject.cs" />
+    <Compile Include="Dependencys\StoryboardHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

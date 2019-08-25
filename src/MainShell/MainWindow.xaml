@@ -4,15 +4,38 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:af="clr-namespace:AirportFlyControl;assembly=AirportFlyControl"
+        xmlns:cov="clr-namespace:AirportFlyControl.Converters;assembly=AirportFlyControl"
         xmlns:local="clr-namespace:MainShell"
         mc:Ignorable="d"
         Background="#313649"
-        Title="MainWindow" Height="769" Width="1280">
+        WindowStartupLocation="CenterScreen"
+        Title="MainWindow" Height="769" Width="1800">
+    
     <Window.DataContext>
         <local:MainWindowVM></local:MainWindowVM>
     </Window.DataContext>
+
+    <Window.Resources>
+        <cov:AirWayColorConverter x:Key="colorCov"></cov:AirWayColorConverter>
+    </Window.Resources>
     
     <Grid>
         <af:AirportFlyLayer AirSources="{Binding AircraftList}"></af:AirportFlyLayer>
+
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center"  VerticalAlignment="Center">
+            <StackPanel.Resources>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="FontSize" Value="20"></Setter>
+                    <Setter Property="FontWeight" Value="Bold"></Setter>
+                    <Setter Property="Foreground" Value="{Binding AircraftList[0].AirWay,Converter={StaticResource colorCov}}"></Setter>
+                    <Setter Property="Margin" Value="0 5 0 5"></Setter>
+                </Style>
+            </StackPanel.Resources>
+            <TextBlock Text="{Binding AircraftList[0].FlightNumber,StringFormat={}{0}}" ></TextBlock>
+            <TextBlock Text="{Binding AircraftList[0].AirWay, StringFormat=Course : {0}}"  ></TextBlock>
+            <TextBlock Text="{Binding AircraftList[0].Vertex.X, StringFormat=PointX % : {0}}"  ></TextBlock>
+            <TextBlock Text="{Binding AircraftList[0].Vertex.Y,StringFormat=PointY % : {0}}"  ></TextBlock>
+            <TextBlock Text="{Binding AircraftList[0].FlightAngle,StringFormat=Angle : {0}}"  ></TextBlock>
+        </StackPanel>
     </Grid>
 </Window>

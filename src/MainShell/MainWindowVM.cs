@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using PropertyChanged;
-using System.Collections.ObjectModel;
+﻿using Domain.AsyncCollection;
 using Domain.Models;
-using System.Windows.Media;
+using PropertyChanged;
+using System;
+using System.Collections.Generic;
 using System.Reactive.Linq;
-using Domain.AsyncCollection;
+using Domain;
 
 namespace MainShell
 {
@@ -17,24 +13,37 @@ namespace MainShell
     {
         public AsyncObservableCollection<AircraftAR> AircraftList { get; set; } = new AsyncObservableCollection<AircraftAR>();
 
+        public IReadOnlyDictionary<int, Tuple<AirWays, VertexCoord,double>> AircraftDic = new Dictionary<int, Tuple<AirWays, VertexCoord, double>>
+        {
+            { 0, new Tuple<AirWays, VertexCoord, double>(AirWays.A,new VertexCoord(0.96,0.93),90) },
+            { 1, new Tuple<AirWays, VertexCoord, double>(AirWays.A,new VertexCoord(0.97,0.1),0) },
+            { 2, new Tuple<AirWays, VertexCoord, double>(AirWays.D,new VertexCoord(0.04,0.1),270) },
+            { 3, new Tuple<AirWays, VertexCoord, double>(AirWays.D,new VertexCoord(0.04,0.93),180) }
+        };
+
         public MainWindowVM()
         {
             AircraftList.Add(new AircraftAR {
                 FlightNumber = "MU6543",
-                AirWay = Domain.AirWays.A,
-                Vertex = new VertexCoord(0, 100),
-                FlightAngle = 0
+                AirWay = AirWays.A,
+                Vertex = new VertexCoord(0.04, 0.93),
+                FlightAngle = 90
             }) ;
 
-            Observable.Interval(TimeSpan.FromSeconds(2)).Subscribe(RunInfo);
+            Observable.Interval(TimeSpan.FromSeconds(5)).Subscribe(RunInfo);
         }
 
-        async void RunInfo(long p)
+        private int offSet = 0;
+        void RunInfo(long p)
         {
+            var data = AircraftDic[offSet%AircraftDic.Count];
             foreach (var item in AircraftList)
             {
-                item.Vertex = new VertexCoord(item.Vertex.X+500, item.Vertex.Y+0.2);
+                item.AirWay = data.Item1;
+                item.Vertex = data.Item2;
+                item.FlightAngle = data.Item3;
             }
+            offSet++;
         }
     }
 }

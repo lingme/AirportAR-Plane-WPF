@@ -15,7 +15,7 @@ namespace AirportFlyControl.Converters
             var span = default(int);
             if (value is double gridSpan)
             {
-                span = gridSpan >= 100 ? 2 : 0;
+                span = gridSpan > 90 && gridSpan < 270 ? 2 : 0;
             }
             return span;
         }

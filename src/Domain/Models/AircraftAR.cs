@@ -9,7 +9,7 @@ namespace Domain.Models
         public string FlightNumber { get; set; }
 
         public AirWays AirWay { get; set; }
-                
+
         public VertexCoord Vertex
         {
             get => ToFrame;
@@ -19,8 +19,21 @@ namespace Domain.Models
                 FromFrame.Y = ToFrame.Y;
                 ToFrame.X = value.X;
                 ToFrame.Y = value.Y;
+
+                MessageInterval = (DateTime.Now - FrameTime).TotalSeconds;
+                FrameTime = DateTime.Now;
+
+                BeginFlyAnimation = !BeginFlyAnimation;
             }
         }
+
+        public VertexCoord FromFrame { get; private set; } = new VertexCoord();
+
+        public VertexCoord ToFrame { get; private set; } = new VertexCoord();
+
+        public DateTime FrameTime { get; private set; } = DateTime.Now;
+
+        public double MessageInterval { get; private set; }
 
         public double FlightAngle { get; set; }
 
@@ -28,8 +41,6 @@ namespace Domain.Models
 
         public bool IsShowAirWay { get; set; } = true;
 
-        public VertexCoord FromFrame { get; private set; } = new VertexCoord();
-
-        public VertexCoord ToFrame { get; private set; } = new VertexCoord();
+        public bool BeginFlyAnimation { get; set; }
     }
 }
