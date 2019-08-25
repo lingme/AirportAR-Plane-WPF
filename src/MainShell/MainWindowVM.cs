@@ -30,7 +30,7 @@ namespace MainShell
                 FlightAngle = 90
             }) ;
 
-            Observable.Interval(TimeSpan.FromSeconds(5)).Subscribe(RunInfo);
+            Observable.Interval(TimeSpan.FromSeconds(3)).Subscribe(RunInfo);
         }
 
         private int offSet = 0;

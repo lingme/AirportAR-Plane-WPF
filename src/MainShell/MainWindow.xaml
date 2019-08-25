@@ -9,7 +9,7 @@
         mc:Ignorable="d"
         Background="#313649"
         WindowStartupLocation="CenterScreen"
-        Title="MainWindow" Height="769" Width="1800">
+        Title="Demo" Height="769" Width="1800">
     
     <Window.DataContext>
         <local:MainWindowVM></local:MainWindowVM>
@@ -33,9 +33,9 @@
             </StackPanel.Resources>
             <TextBlock Text="{Binding AircraftList[0].FlightNumber,StringFormat={}{0}}" ></TextBlock>
             <TextBlock Text="{Binding AircraftList[0].AirWay, StringFormat=Course : {0}}"  ></TextBlock>
-            <TextBlock Text="{Binding AircraftList[0].Vertex.X, StringFormat=PointX % : {0}}"  ></TextBlock>
-            <TextBlock Text="{Binding AircraftList[0].Vertex.Y,StringFormat=PointY % : {0}}"  ></TextBlock>
-            <TextBlock Text="{Binding AircraftList[0].FlightAngle,StringFormat=Angle : {0}}"  ></TextBlock>
+            <TextBlock Text="{Binding AircraftList[0].Vertex.X, StringFormat=PointX : {0}%}"  ></TextBlock>
+            <TextBlock Text="{Binding AircraftList[0].Vertex.Y,StringFormat=PointY : {0}%}"  ></TextBlock>
+            <TextBlock Text="{Binding AircraftList[0].FlightAngle,StringFormat=Angle : {0}°}"  ></TextBlock>
         </StackPanel>
     </Grid>
 </Window>
