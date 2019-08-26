@@ -1,6 +1,6 @@
 # Airport AR Plane WPF
 
-![i](https://github.com/lingme/AirportAR_Plane_WPF/raw/master/image/demo_capture.png)
+![i](https://github.com/lingme/AirportAR_Plane_WPF/raw/master/image/demo_gif.png)
 
 ## Background
 
