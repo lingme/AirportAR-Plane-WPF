@@ -18,7 +18,7 @@ Flight Way is Arrivals
 Image position ratio
 
 ### FlightAngle
-Flight angle
+Flight angle number
 
 ### IsShowFlightNumber
 Whether to display the flight number
